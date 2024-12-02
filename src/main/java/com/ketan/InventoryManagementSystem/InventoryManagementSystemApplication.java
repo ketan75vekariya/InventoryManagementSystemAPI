@@ -19,12 +19,12 @@ public class InventoryManagementSystemApplication {
 	}
 	
 	@Bean
-	CommandLineRunner commandLineRunner(RoleRepo roleRepo) {
+	CommandLineRunner commandLineRunner(/* RoleRepo roleRepo */) {
 		return args->{
 			//Added some other role
 			
-//			Role employee = new Role("employee", "You Have Few Access of System", new Date(), new Date() );
-//			roleRepo.save(employee);
+//			Role admin = new Role("admin", "You Have Full Access of System", new Date(), new Date() );
+//			roleRepo.save(admin);
 //			Role user = new Role("user", "You Have Limited Access of system", new Date(), new Date() );
 //			roleRepo.save(user);
 //			System.out.println("Employee and normal user role added");
@@ -35,7 +35,7 @@ public class InventoryManagementSystemApplication {
 //			System.out.println("Selected all roles");
 //			List<Role> roles = roleRepo.findAll();
 //			System.out.println(roles);
-			System.out.println(roleRepo.findRoleByRole("admin"));
+//			System.out.println(roleRepo.findRoleByRole("admin"));
 			
 		};
 	}
