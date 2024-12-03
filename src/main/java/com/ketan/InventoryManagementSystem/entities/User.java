@@ -13,16 +13,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Role {
-	
+public class User {
+
 	@Id
 	@SequenceGenerator(
-			name= "role_sequence",
-			sequenceName = "role_sequence",
+			name= "user_sequence",
+			sequenceName = "user_sequence",
 			allocationSize = 1
 			)
 	@GeneratedValue(
-			generator = "role_sequence",
+			generator = "user_sequence",
 			strategy = GenerationType.SEQUENCE
 			)
 	@Column(
@@ -33,64 +33,108 @@ public class Role {
 			nullable = false,
 			columnDefinition = "TEXT"
 			)
-	private String role;
+	private String firstName;
 	@Column(
 			nullable = false,
 			columnDefinition = "TEXT"
 			)
-	private String roleDesrciption;
+	private String lastName;
+	@Column(
+			nullable = false,
+			columnDefinition = "TEXT",
+			unique = true
+			)
+	private String email;
+	@Column(
+			nullable = false,
+			unique = true
+			)
+	private Integer phone;
 	
 	@CreationTimestamp
 	private Date createdAt;
+	
 	@UpdateTimestamp
 	private Date updatedAt;
 	
-	
-	
-	public Role() {
+	public User() {
 		super();
 	}
-	public Role(String role, String roleDesrciption, Date createdAt, Date updatedAt) {
+	
+	public User(String firstName, String lastName, String email, Integer phone, Date createdAt,
+			Date updatedAt) {
 		super();
-		this.role = role;
-		this.roleDesrciption = roleDesrciption;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getRole() {
-		return role;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getRoleDesrciption() {
-		return roleDesrciption;
+
+	public String getLastName() {
+		return lastName;
 	}
-	public void setRoleDesrciption(String roleDesrciption) {
-		this.roleDesrciption = roleDesrciption;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", role=" + role + ", roleDesrciption=" + roleDesrciption + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phone=" + phone + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-
+	
+	
+	
 	
 }

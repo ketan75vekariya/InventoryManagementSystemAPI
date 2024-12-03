@@ -13,84 +13,80 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Role {
+public class Sale {
 	
 	@Id
 	@SequenceGenerator(
-			name= "role_sequence",
-			sequenceName = "role_sequence",
+			name= "sale_sequence",
+			sequenceName = "sale_sequence",
 			allocationSize = 1
 			)
 	@GeneratedValue(
-			generator = "role_sequence",
+			generator = "sale_sequence",
 			strategy = GenerationType.SEQUENCE
 			)
 	@Column(
 			updatable = false
 			)
 	private Long id;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String role;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String roleDesrciption;
+	
+	private Integer quatity;
 	
 	@CreationTimestamp
 	private Date createdAt;
+	
 	@UpdateTimestamp
 	private Date updatedAt;
-	
-	
-	
-	public Role() {
+
+	public Sale() {
 		super();
 	}
-	public Role(String role, String roleDesrciption, Date createdAt, Date updatedAt) {
+
+	public Sale(Integer quatity, Date createdAt, Date updatedAt) {
 		super();
-		this.role = role;
-		this.roleDesrciption = roleDesrciption;
+		this.quatity = quatity;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getRole() {
-		return role;
+
+	public Integer getQuatity() {
+		return quatity;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setQuatity(Integer quatity) {
+		this.quatity = quatity;
 	}
-	public String getRoleDesrciption() {
-		return roleDesrciption;
-	}
-	public void setRoleDesrciption(String roleDesrciption) {
-		this.roleDesrciption = roleDesrciption;
-	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", role=" + role + ", roleDesrciption=" + roleDesrciption + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Sale [id=" + id + ", quatity=" + quatity + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ "]";
 	}
-
 	
+	
+
 }

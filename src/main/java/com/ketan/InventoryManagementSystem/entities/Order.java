@@ -13,84 +13,100 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Role {
-	
+public class Order {
+
 	@Id
 	@SequenceGenerator(
-			name= "role_sequence",
-			sequenceName = "role_sequence",
+			name= "order_sequence",
+			sequenceName = "order_sequence",
 			allocationSize = 1
 			)
 	@GeneratedValue(
-			generator = "role_sequence",
+			generator = "order_sequence",
 			strategy = GenerationType.SEQUENCE
 			)
 	@Column(
 			updatable = false
 			)
 	private Long id;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String role;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String roleDesrciption;
+	
+	private Float total;
 	
 	@CreationTimestamp
 	private Date createdAt;
+	
 	@UpdateTimestamp
 	private Date updatedAt;
 	
 	
-	
-	public Role() {
+
+	public Order() {
 		super();
 	}
-	public Role(String role, String roleDesrciption, Date createdAt, Date updatedAt) {
+
+
+
+	public Order(Float total, Date createdAt, Date updatedAt) {
 		super();
-		this.role = role;
-		this.roleDesrciption = roleDesrciption;
+		this.total = total;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
+
 	public Long getId() {
 		return id;
 	}
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getRole() {
-		return role;
+
+
+
+	public Float getTotal() {
+		return total;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+
+
+	public void setTotal(Float total) {
+		this.total = total;
 	}
-	public String getRoleDesrciption() {
-		return roleDesrciption;
-	}
-	public void setRoleDesrciption(String roleDesrciption) {
-		this.roleDesrciption = roleDesrciption;
-	}
+
+
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
+
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
+
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
+
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+
+
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", role=" + role + ", roleDesrciption=" + roleDesrciption + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Order [id=" + id + ", total=" + total + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-
+	
 	
 }

@@ -13,16 +13,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Role {
-	
+public class Discount {
 	@Id
 	@SequenceGenerator(
-			name= "role_sequence",
-			sequenceName = "role_sequence",
+			name= "discount_sequence",
+			sequenceName = "discount_sequence",
 			allocationSize = 1
 			)
 	@GeneratedValue(
-			generator = "role_sequence",
+			generator = "discount_sequence",
 			strategy = GenerationType.SEQUENCE
 			)
 	@Column(
@@ -33,64 +32,73 @@ public class Role {
 			nullable = false,
 			columnDefinition = "TEXT"
 			)
-	private String role;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String roleDesrciption;
+	private String discountName;
+	
+	private Integer discountPercentage;
 	
 	@CreationTimestamp
 	private Date createdAt;
+	
 	@UpdateTimestamp
 	private Date updatedAt;
-	
-	
-	
-	public Role() {
+
+	public Discount() {
 		super();
 	}
-	public Role(String role, String roleDesrciption, Date createdAt, Date updatedAt) {
+
+	public Discount(String discountName, Integer discountPercentage, Date createdAt, Date updatedAt) {
 		super();
-		this.role = role;
-		this.roleDesrciption = roleDesrciption;
+		this.discountName = discountName;
+		this.discountPercentage = discountPercentage;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getRole() {
-		return role;
+
+	public String getDiscountName() {
+		return discountName;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setDiscountName(String discountName) {
+		this.discountName = discountName;
 	}
-	public String getRoleDesrciption() {
-		return roleDesrciption;
+
+	public Integer getDiscountPercentage() {
+		return discountPercentage;
 	}
-	public void setRoleDesrciption(String roleDesrciption) {
-		this.roleDesrciption = roleDesrciption;
+
+	public void setDiscountPercentage(Integer discountPercentage) {
+		this.discountPercentage = discountPercentage;
 	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", role=" + role + ", roleDesrciption=" + roleDesrciption + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Discount [id=" + id + ", discountName=" + discountName + ", discountPercentage=" + discountPercentage
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-
+	
 	
 }
