@@ -1,15 +1,23 @@
 package com.ketan.InventoryManagementSystem.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -54,11 +62,34 @@ public class Product {
 	
 	private Float salePrice;
 	
+	@ManyToOne
+    @JoinColumn(name="categoryid", nullable=false)
+    private Category category;
+	
+	@ManyToOne
+    @JoinColumn(name="discountid", nullable=false)
+    private Discount discount;
+	
+	@OneToMany(mappedBy="product",cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Sale> sale;
+	
+	
+	
+	 @ManyToMany
+	    @JoinTable(
+	            name = "tax",
+	            joinColumns = @JoinColumn(name = "productid"),
+	            inverseJoinColumns = @JoinColumn(name = "taxid")
+	    )
+	    private Set<Tax> tax = new HashSet<>();
+	
 	@Column(
 			columnDefinition = "TEXT"
 			)
 	private String productImage;
 	
+	
+
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -69,19 +100,25 @@ public class Product {
 		super();
 	}
 
-	public Product(String productName, String productDescription, String barcode, Integer quantity, Float purchasePrice,
-			Float salePrice, String productImage, Date createdAt, Date updatedAt) {
+	
+	public Product(Long id, String productName, String productDescription, String barcode, Integer quantity,
+			Float purchasePrice, Float salePrice, Set<Sale> sale, Set<Tax> tax, String productImage, Date createdAt,
+			Date updatedAt) {
 		super();
+		Id = id;
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.barcode = barcode;
 		this.quantity = quantity;
 		this.purchasePrice = purchasePrice;
 		this.salePrice = salePrice;
+		this.sale = sale;
+		this.tax = tax;
 		this.productImage = productImage;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
 
 	public Long getId() {
 		return Id;
@@ -146,6 +183,22 @@ public class Product {
 	public void setProductImage(String productImage) {
 		this.productImage = productImage;
 	}
+	
+	public Set<Sale> getSale() {
+		return sale;
+	}
+
+	public void setSale(Set<Sale> sale) {
+		this.sale = sale;
+	}
+
+	public Set<Tax> getTax() {
+		return tax;
+	}
+
+	public void setTax(Set<Tax> tax) {
+		this.tax = tax;
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -163,13 +216,17 @@ public class Product {
 		this.updatedAt = updatedAt;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Product [Id=" + Id + ", productName=" + productName + ", productDescription=" + productDescription
 				+ ", barcode=" + barcode + ", quantity=" + quantity + ", purchasePrice=" + purchasePrice
-				+ ", salePrice=" + salePrice + ", productImage=" + productImage + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + "]";
+				+ ", salePrice=" + salePrice + ", sale=" + sale + ", tax=" + tax + ", productImage=" + productImage
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+
+	
+
 	
 	
 	

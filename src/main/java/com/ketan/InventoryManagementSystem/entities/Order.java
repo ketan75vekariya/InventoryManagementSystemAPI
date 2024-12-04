@@ -1,15 +1,18 @@
 package com.ketan.InventoryManagementSystem.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -32,6 +35,9 @@ public class Order {
 	
 	private Float total;
 	
+	@OneToMany(mappedBy="order",cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Sale> sale;
+	
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -44,16 +50,14 @@ public class Order {
 		super();
 	}
 
-
-
-	public Order(Float total, Date createdAt, Date updatedAt) {
+	public Order(Long id, Float total, Set<Sale> sale, Date createdAt, Date updatedAt) {
 		super();
+		this.id = id;
 		this.total = total;
+		this.sale = sale;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -79,6 +83,14 @@ public class Order {
 
 
 
+	public Set<Sale> getSale() {
+		return sale;
+	}
+
+	public void setSale(Set<Sale> sale) {
+		this.sale = sale;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -101,12 +113,15 @@ public class Order {
 		this.updatedAt = updatedAt;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", total=" + total + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Order [id=" + id + ", total=" + total + ", sale=" + sale + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
 	}
+
+
+
+	
 	
 	
 }

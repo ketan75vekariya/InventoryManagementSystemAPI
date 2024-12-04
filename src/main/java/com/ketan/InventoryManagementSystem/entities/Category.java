@@ -1,15 +1,18 @@
 package com.ketan.InventoryManagementSystem.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -41,6 +44,10 @@ public class Category {
 			)
 	private String categoryDescription;
 	
+	@OneToMany(mappedBy="category",cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Product> products;
+	
+	
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -51,13 +58,18 @@ public class Category {
 		super();
 	}
 
-	public Category(String categoryName, String categoryDescription, Date createdAt, Date updatedAt) {
+	public Category(Long id, String categoryName, String categoryDescription, Set<Product> products, Date createdAt,
+			Date updatedAt) {
 		super();
+		this.id = id;
 		this.categoryName = categoryName;
 		this.categoryDescription = categoryDescription;
+		this.products = products;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -83,6 +95,19 @@ public class Category {
 		this.categoryDescription = categoryDescription;
 	}
 
+	
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -102,8 +127,10 @@ public class Category {
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", categoryName=" + categoryName + ", categoryDescription=" + categoryDescription
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", products=" + products + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+
+	
 	
 	
 }

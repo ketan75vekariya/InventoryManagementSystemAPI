@@ -1,15 +1,18 @@
 package com.ketan.InventoryManagementSystem.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -36,6 +39,9 @@ public class Discount {
 	
 	private Integer discountPercentage;
 	
+	@OneToMany(mappedBy="discount",cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Product> products;
+	
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -46,13 +52,20 @@ public class Discount {
 		super();
 	}
 
-	public Discount(String discountName, Integer discountPercentage, Date createdAt, Date updatedAt) {
+	
+
+	public Discount(Long id, String discountName, Integer discountPercentage, Set<Product> products, Date createdAt,
+			Date updatedAt) {
 		super();
+		this.id = id;
 		this.discountName = discountName;
 		this.discountPercentage = discountPercentage;
+		this.products = products;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -94,11 +107,15 @@ public class Discount {
 		this.updatedAt = updatedAt;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Discount [id=" + id + ", discountName=" + discountName + ", discountPercentage=" + discountPercentage
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", products=" + products + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
+
+	
 	
 	
 }

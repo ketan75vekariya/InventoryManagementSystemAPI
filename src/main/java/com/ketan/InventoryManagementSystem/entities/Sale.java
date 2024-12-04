@@ -4,12 +4,13 @@ import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -32,6 +33,22 @@ public class Sale {
 	
 	private Integer quatity;
 	
+	private Double salePrice;
+	
+	private Double total;
+	
+	@ManyToOne
+    @JoinColumn(name="productid", nullable=false)
+    private Product product;
+	
+	@ManyToOne
+    @JoinColumn(name="orderid", nullable=false)
+    private Order order;
+	
+	
+
+
+
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -42,9 +59,12 @@ public class Sale {
 		super();
 	}
 
-	public Sale(Integer quatity, Date createdAt, Date updatedAt) {
+	public Sale(Long id, Integer quatity, Double salePrice, Double total, Date createdAt, Date updatedAt) {
 		super();
+		this.id = id;
 		this.quatity = quatity;
+		this.salePrice = salePrice;
+		this.total = total;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -65,6 +85,28 @@ public class Sale {
 		this.quatity = quatity;
 	}
 
+	public Double getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(Double salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	
+
+	public Double getTotal() {
+		return total;
+	}
+
+
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -83,10 +125,10 @@ public class Sale {
 
 	@Override
 	public String toString() {
-		return "Sale [id=" + id + ", quatity=" + quatity + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-				+ "]";
+		return "Sale [id=" + id + ", quatity=" + quatity + ", salePrice=" + salePrice + ", total=" + total
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
+
 	
 
 }

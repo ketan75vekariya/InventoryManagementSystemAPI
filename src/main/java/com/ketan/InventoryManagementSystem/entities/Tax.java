@@ -1,6 +1,8 @@
 package com.ketan.InventoryManagementSystem.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -10,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -34,6 +37,9 @@ public class Tax {
 	
 	private Integer taxPercentage;
 	
+	@ManyToMany(mappedBy = "tax")
+    private Set<Product> product = new HashSet<>();
+	
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -44,10 +50,12 @@ public class Tax {
 		super();
 	}
 
-	public Tax(String taxName, Integer taxPercentage, Date createdAt, Date updatedAt) {
+	public Tax(Long id, String taxName, Integer taxPercentage, Set<Product> product, Date createdAt, Date updatedAt) {
 		super();
+		this.id = id;
 		this.taxName = taxName;
 		this.taxPercentage = taxPercentage;
+		this.product = product;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -76,6 +84,14 @@ public class Tax {
 		this.taxPercentage = taxPercentage;
 	}
 
+	public Set<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -94,9 +110,9 @@ public class Tax {
 
 	@Override
 	public String toString() {
-		return "Tax [id=" + id + ", taxName=" + taxName + ", taxPercentage=" + taxPercentage + ", createdAt="
-				+ createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Tax [id=" + id + ", taxName=" + taxName + ", taxPercentage=" + taxPercentage + ", product=" + product
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
+
 	
 }
