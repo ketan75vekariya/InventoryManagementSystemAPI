@@ -1,5 +1,6 @@
 package com.ketan.InventoryManagementSystem.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,29 +9,19 @@ import org.hibernate.annotations.UpdateTimestamp;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-
 @Entity
-public class User {
+public class User implements Serializable {
 
+	private static final long serialVersionUID = -7150969312888954615L;
 	@Id
-	@SequenceGenerator(
-			name= "user_sequence",
-			sequenceName = "user_sequence",
-			allocationSize = 1
-			)
-	@GeneratedValue(
-			generator = "user_sequence",
-			strategy = GenerationType.SEQUENCE
-			)
-	@Column(
-			updatable = false
-			)
+	@GeneratedValue
 	private Long id;
+	@Column(nullable = false)
+	private String userId;
+	
 	@Column(
 			nullable = false,
 			columnDefinition = "TEXT"
@@ -53,9 +44,12 @@ public class User {
 			)
 	private Integer phone;
 	
-//	@ManyToOne
-//    @JoinColumn(name="roleid", nullable=false)
-//    private Role role;
+	@Column(nullable = false)
+	private String password;
+	
+	@ManyToOne
+    @JoinColumn(name="roleid", nullable=false)
+    private Role role;
 	
 	@CreationTimestamp
 	private Date createdAt;
@@ -86,6 +80,22 @@ public class User {
 		this.id = id;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -108,6 +118,15 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Integer getPhone() {

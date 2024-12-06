@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService {
 	public RoleDto createRole(RoleDto role) {
 		Role roleEntity = new Role();
 		BeanUtils.copyProperties(role, roleEntity);
-		String publicRoleID = utils.generateUniqueId(5); 
+		String publicRoleID = utils.generateUniqueId(10); 
 		roleEntity.setRoleId(publicRoleID);
 		roleEntity.setCreatedAt(new Date());
 		roleEntity.setUpdatedAt(new Date());

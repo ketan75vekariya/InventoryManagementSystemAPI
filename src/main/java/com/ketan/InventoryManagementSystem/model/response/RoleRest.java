@@ -1,5 +1,6 @@
 package com.ketan.InventoryManagementSystem.model.response;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 /*
  * This Class convert java object to json response which we want to send as a response 
@@ -9,8 +10,8 @@ public class RoleRest {
 	private String roleId;
 	private String role;
 	private String roleDescription;
-	private Date createdAt;
-	private Date updatedAt;
+	private String createdAt;
+	private String updatedAt;
 	public String getRoleId() {
 		return roleId;
 	}
@@ -29,17 +30,21 @@ public class RoleRest {
 	public void setRoleDescription(String roleDescription) {
 		this.roleDescription = roleDescription;
 	}
-	public Date getCreatedAt() {
+	public String getCreatedAt() {
 		return createdAt;
 	}
 	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+		 String strDate= formatter.format(createdAt);
+		 this.createdAt = strDate;
 	}
-	public Date getUpdatedAt() {
+	public String getUpdatedAt() {
 		return updatedAt;
 	}
 	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+		 String strDate= formatter.format(updatedAt);
+		this.updatedAt = strDate;
 	}
 	
 	
