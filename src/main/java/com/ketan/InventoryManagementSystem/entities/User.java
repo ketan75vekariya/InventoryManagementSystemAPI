@@ -53,9 +53,9 @@ public class User {
 			)
 	private Integer phone;
 	
-	@ManyToOne
-    @JoinColumn(name="roleid", nullable=false)
-    private Role role;
+//	@ManyToOne
+//    @JoinColumn(name="roleid", nullable=false)
+//    private Role role;
 	
 	@CreationTimestamp
 	private Date createdAt;

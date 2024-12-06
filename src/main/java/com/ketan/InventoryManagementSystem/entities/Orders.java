@@ -14,9 +14,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
-public class Order {
+@Table(name = "orders")
+public class Orders {
 
 	@Id
 	@SequenceGenerator(
@@ -35,7 +37,7 @@ public class Order {
 	
 	private Float total;
 	
-	@OneToMany(mappedBy="order",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="orders",cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Sale> sale;
 	
 	@CreationTimestamp
@@ -46,11 +48,11 @@ public class Order {
 	
 	
 
-	public Order() {
+	public Orders() {
 		super();
 	}
 
-	public Order(Long id, Float total, Set<Sale> sale, Date createdAt, Date updatedAt) {
+	public Orders(Long id, Float total, Set<Sale> sale, Date createdAt, Date updatedAt) {
 		super();
 		this.id = id;
 		this.total = total;

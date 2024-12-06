@@ -43,7 +43,7 @@ public class Sale {
 	
 	@ManyToOne
     @JoinColumn(name="orderid", nullable=false)
-    private Order order;
+    private Orders orders;
 	
 	
 

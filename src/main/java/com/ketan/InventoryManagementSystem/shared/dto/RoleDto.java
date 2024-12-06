@@ -1,42 +1,22 @@
-package com.ketan.InventoryManagementSystem.entities;
+package com.ketan.InventoryManagementSystem.shared.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
-@Entity
-public class Role implements Serializable{
-
-	private static final long serialVersionUID = 1168010072523366609L;
+/*
+ * This Class shared with all other layers like UI, Service, and Data layers It is also known as Data Transfer Object
+ */
+public class RoleDto implements Serializable {
 	
-	@Id
-	@GeneratedValue
+	private static final long serialVersionUID = -8888260510833519944L;
 	private Long id;
-	
-	@Column(nullable = false)
 	private String roleId;
-	
-	@Column(nullable = false, length = 50, unique =true)
 	private String role;
-	
-	@Column(nullable = false, length = 150)
 	private String roleDescription;
-	
-	@Column(nullable = false)
 	private Date createdAt;
-	
-	@Column(nullable = false)
 	private Date updatedAt;
-	
 	private String emailValidationToken;
-	
-	@Column(nullable = false)
 	private Boolean emailValidationTokenStatus = false;
-	
 	public Long getId() {
 		return id;
 	}
@@ -86,7 +66,5 @@ public class Role implements Serializable{
 		this.emailValidationTokenStatus = emailValidationTokenStatus;
 	}
 	
-	
-
 	
 }
