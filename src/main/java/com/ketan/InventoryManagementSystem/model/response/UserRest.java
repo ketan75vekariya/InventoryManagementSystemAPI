@@ -12,8 +12,8 @@ public class UserRest {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private Integer phone;
-	private String roleId;
+	private String phone;
+	//private String roleId;
 	private String createdAt;
 	private String updatedAt;
 	public String getUserId() {
@@ -40,23 +40,23 @@ public class UserRest {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
+//	public String getRoleId() {
+//		return roleId;
+//	}
+//	public void setRoleId(String roleId) {
+//		this.roleId = roleId;
+//	}
 	public String getCreatedAt() {
 		return createdAt;
 	}
 	public void setCreatedAt(Date createdAt) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");  
 		String strDate= formatter.format(createdAt);
 		this.createdAt = strDate;
 	}
@@ -64,7 +64,7 @@ public class UserRest {
 		return updatedAt;
 	}
 	public void setUpdatedAt(Date updatedAt) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");  
 		String strDate= formatter.format(updatedAt);
 		this.updatedAt = strDate;
 	}

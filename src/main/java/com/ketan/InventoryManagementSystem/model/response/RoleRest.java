@@ -34,7 +34,7 @@ public class RoleRest {
 		return createdAt;
 	}
 	public void setCreatedAt(Date createdAt) {
-		 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");  
 		 String strDate= formatter.format(createdAt);
 		 this.createdAt = strDate;
 	}
@@ -42,8 +42,8 @@ public class RoleRest {
 		return updatedAt;
 	}
 	public void setUpdatedAt(Date updatedAt) {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
-		 String strDate= formatter.format(updatedAt);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");  
+		String strDate= formatter.format(updatedAt);
 		this.updatedAt = strDate;
 	}
 	

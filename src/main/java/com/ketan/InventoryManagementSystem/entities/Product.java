@@ -1,5 +1,6 @@
 package com.ketan.InventoryManagementSystem.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,31 +12,20 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = -2352277357506004910L;
 
 	@Id
-	@SequenceGenerator(
-			name= "product_sequence",
-			sequenceName = "product_sequence",
-			allocationSize = 1
-			)
-	@GeneratedValue(
-			generator = "product_sequence",
-			strategy = GenerationType.SEQUENCE
-			)
-	@Column(
-			updatable = false
-			)
+	@GeneratedValue
 	private Long Id;
 	
 	@Column(
@@ -95,29 +85,6 @@ public class Product {
 	
 	@UpdateTimestamp
 	private Date updatedAt;
-
-	public Product() {
-		super();
-	}
-
-	
-	public Product(Long id, String productName, String productDescription, String barcode, Integer quantity,
-			Float purchasePrice, Float salePrice, Set<Sale> sale, Set<Tax> tax, String productImage, Date createdAt,
-			Date updatedAt) {
-		super();
-		Id = id;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.barcode = barcode;
-		this.quantity = quantity;
-		this.purchasePrice = purchasePrice;
-		this.salePrice = salePrice;
-		this.sale = sale;
-		this.tax = tax;
-		this.productImage = productImage;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
 
 
 	public Long getId() {
@@ -216,16 +183,21 @@ public class Product {
 		this.updatedAt = updatedAt;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Product [Id=" + Id + ", productName=" + productName + ", productDescription=" + productDescription
-				+ ", barcode=" + barcode + ", quantity=" + quantity + ", purchasePrice=" + purchasePrice
-				+ ", salePrice=" + salePrice + ", sale=" + sale + ", tax=" + tax + ", productImage=" + productImage
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	public Category getCategory() {
+		return category;
 	}
 
-	
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Discount getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
+	}
 
 	
 	

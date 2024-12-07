@@ -40,9 +40,10 @@ public class User implements Serializable {
 	private String email;
 	@Column(
 			nullable = false,
+			length =15,
 			unique = true
 			)
-	private Integer phone;
+	private String phone;
 	
 	@Column(nullable = false)
 	private String password;
@@ -61,7 +62,7 @@ public class User implements Serializable {
 		super();
 	}
 	
-	public User(String firstName, String lastName, String email, Integer phone, Date createdAt,
+	public User(String firstName, String lastName, String email, String phone, Date createdAt,
 			Date updatedAt) {
 		super();
 		this.firstName = firstName;
@@ -129,11 +130,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

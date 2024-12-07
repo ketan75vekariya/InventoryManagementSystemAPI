@@ -3,6 +3,7 @@ package com.ketan.InventoryManagementSystem.shared.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+
 public class UserDto implements Serializable{
 
 	private static final long serialVersionUID = -7845624048687537506L;
@@ -13,7 +14,7 @@ public class UserDto implements Serializable{
 	private String lastName;
 	private String email;
 	private String password;
-	private Integer phone;
+	private String phone;
 	private Date createdAt;
 	private Date updatedAt;
 	private String emailValidationToken;
@@ -36,6 +37,7 @@ public class UserDto implements Serializable{
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -60,10 +62,10 @@ public class UserDto implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public Date getCreatedAt() {
@@ -90,6 +92,7 @@ public class UserDto implements Serializable{
 	public void setEmailValidationTokenStatus(Boolean emailValidationTokenStatus) {
 		this.emailValidationTokenStatus = emailValidationTokenStatus;
 	}
+	
 	
 
 }

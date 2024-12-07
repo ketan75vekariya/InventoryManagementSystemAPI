@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ketan.InventoryManagementSystem.model.request.UserDetailsRequestModel;
 import com.ketan.InventoryManagementSystem.model.response.UserRest;
+import com.ketan.InventoryManagementSystem.service.RoleService;
 import com.ketan.InventoryManagementSystem.service.UserService;
 import com.ketan.InventoryManagementSystem.shared.dto.UserDto;
 
@@ -21,6 +22,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	RoleService roleService;
 
 	@GetMapping
 	public String getAllUser() {
@@ -33,7 +37,6 @@ public class UserController {
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(userDetails, userDto);
 		UserDto createdUser = userService.createUser(userDto);
-		returnValue.setRoleId(null);
 		BeanUtils.copyProperties(createdUser, returnValue);
 		return returnValue;
 	}

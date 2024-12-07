@@ -7,7 +7,7 @@ public class UserDetailsRequestModel {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private Integer phone;
+	private String phone;
 	private String password;
 	private String roleId;
 	public String getFirstName() {
@@ -28,10 +28,10 @@ public class UserDetailsRequestModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getPassword() {
