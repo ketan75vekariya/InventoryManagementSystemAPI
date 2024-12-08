@@ -31,7 +31,7 @@ public class Discount implements Serializable{
 			)
 	private String discountName;
 	
-	private Integer discountPercentage;
+	private Double discountPercentage;
 	
 	@OneToMany(mappedBy="discount",cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Product> products;
@@ -71,11 +71,11 @@ public class Discount implements Serializable{
 		this.discountName = discountName;
 	}
 
-	public Integer getDiscountPercentage() {
+	public Double getDiscountPercentage() {
 		return discountPercentage;
 	}
 
-	public void setDiscountPercentage(Integer discountPercentage) {
+	public void setDiscountPercentage(Double discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 

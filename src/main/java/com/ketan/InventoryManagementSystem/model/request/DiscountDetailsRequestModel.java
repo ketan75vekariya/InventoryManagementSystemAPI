@@ -4,7 +4,7 @@ public class DiscountDetailsRequestModel {
 	
 	private String discountName;
 	
-	private Integer discountPercentage;
+	private Double discountPercentage;
 	
 	public String getDiscountName() {
 		return discountName;
@@ -12,10 +12,10 @@ public class DiscountDetailsRequestModel {
 	public void setDiscountName(String discountName) {
 		this.discountName = discountName;
 	}
-	public Integer getDiscountPercentage() {
+	public Double getDiscountPercentage() {
 		return discountPercentage;
 	}
-	public void setDiscountPercentage(Integer discountPercentage) {
+	public void setDiscountPercentage(Double discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 	

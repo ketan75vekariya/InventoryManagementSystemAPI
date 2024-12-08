@@ -10,7 +10,7 @@ public class DiscountDto implements Serializable{
 	private Long id;
 	private String discountId;
 	private String discountName;
-	private Integer discountPercentage;
+	private Double discountPercentage;
 	private Date createdAt;
 	private Date updatedAt;
 	private Boolean emailValidationTokenStatus = false;
@@ -33,10 +33,10 @@ public class DiscountDto implements Serializable{
 	public void setDiscountName(String discountName) {
 		this.discountName = discountName;
 	}
-	public Integer getDiscountPercentage() {
+	public Double getDiscountPercentage() {
 		return discountPercentage;
 	}
-	public void setDiscountPercentage(Integer discountPercentage) {
+	public void setDiscountPercentage(Double discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 	public Date getCreatedAt() {

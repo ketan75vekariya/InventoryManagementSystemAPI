@@ -6,7 +6,7 @@ import java.util.Date;
 public class DiscountRest {
 	private String discountId;
 	private String discountName;
-	private Integer discountPercentage;
+	private Double discountPercentage;
 	private String createdAt;
 	private String updatedAt;
 	
@@ -22,10 +22,10 @@ public class DiscountRest {
 	public void setDiscountName(String discountName) {
 		this.discountName = discountName;
 	}
-	public Integer getDiscountPercentage() {
+	public Double getDiscountPercentage() {
 		return discountPercentage;
 	}
-	public void setDiscountPercentage(Integer discountPercentage) {
+	public void setDiscountPercentage(Double discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
 	public String getCreatedAt() {
