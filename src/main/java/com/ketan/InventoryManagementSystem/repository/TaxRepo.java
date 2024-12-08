@@ -1,9 +1,9 @@
 package com.ketan.InventoryManagementSystem.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import com.ketan.InventoryManagementSystem.entities.Tax;
 
-public interface TaxRepo extends JpaRepository<Tax,Long>{
+public interface TaxRepo extends CrudRepository<Tax,Long>{
 
 }

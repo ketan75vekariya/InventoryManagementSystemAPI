@@ -2,7 +2,6 @@ package com.ketan.InventoryManagementSystem.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -65,13 +64,13 @@ public class Product implements Serializable {
 	
 	
 	
-	 @ManyToMany
-	    @JoinTable(
-	            name = "tax",
-	            joinColumns = @JoinColumn(name = "productid"),
-	            inverseJoinColumns = @JoinColumn(name = "taxid")
-	    )
-	    private Set<Tax> tax = new HashSet<>();
+	@ManyToMany
+    @JoinTable(
+        name = "product_tax",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "tax_id")
+    )
+    private Set<Tax> taxes;
 	
 	@Column(
 			columnDefinition = "TEXT"
@@ -159,12 +158,12 @@ public class Product implements Serializable {
 		this.sale = sale;
 	}
 
-	public Set<Tax> getTax() {
-		return tax;
+	public Set<Tax> getTaxes() {
+		return taxes;
 	}
 
-	public void setTax(Set<Tax> tax) {
-		this.tax = tax;
+	public void setTaxes(Set<Tax> taxes) {
+		this.taxes = taxes;
 	}
 
 	public Date getCreatedAt() {
