@@ -2,36 +2,33 @@ package com.ketan.InventoryManagementSystem.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-@Entity
-public class User implements Serializable {
+import jakarta.persistence.OneToMany;
 
-	private static final long serialVersionUID = -7150969312888954615L;
+@Entity
+public class Customer implements Serializable{
+
+	private static final long serialVersionUID = -9038425895822151240L;
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(nullable = false)
-	private String userId;
+	@Column(nullable =false)
+	private String customerId;
 	
 	@Column(
 			nullable = false,
 			columnDefinition = "TEXT"
 			)
-	private String firstName;
-	@Column(
-			nullable = false,
-			columnDefinition = "TEXT"
-			)
-	private String lastName;
+	private String customerName;
 	@Column(
 			nullable = false,
 			columnDefinition = "TEXT",
@@ -45,25 +42,20 @@ public class User implements Serializable {
 			)
 	private String phone;
 	
-	@Column(nullable = false)
-	private String password;
-	
-	@ManyToOne
-    @JoinColumn(name="roleid", nullable=false)
-    private Role role;
-	
 	@CreationTimestamp
 	private Date createdAt;
 	
 	@UpdateTimestamp
 	private Date updatedAt;
 	
+	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Orders> orders;
+	
 	private String emailValidationToken;
 	
 	@Column(nullable = false)
 	private Boolean emailValidationTokenStatus = false;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -72,36 +64,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getCustomerId() {
+		return customerId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getEmail() {
@@ -110,15 +86,6 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getPhone() {
@@ -160,7 +127,15 @@ public class User implements Serializable {
 	public void setEmailValidationTokenStatus(Boolean emailValidationTokenStatus) {
 		this.emailValidationTokenStatus = emailValidationTokenStatus;
 	}
+
+	public Set<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Orders> orders) {
+		this.orders = orders;
+	}
 	
 	
-	
+
 }

@@ -12,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -40,6 +42,11 @@ public class Orders {
 	@OneToMany(mappedBy="orders",cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Sale> sale;
 	
+
+	@ManyToOne
+    @JoinColumn(name="customerid", nullable=false)
+    private Customer customer;
+	
 	@CreationTimestamp
 	private Date createdAt;
 	
@@ -47,19 +54,6 @@ public class Orders {
 	private Date updatedAt;
 	
 	
-
-	public Orders() {
-		super();
-	}
-
-	public Orders(Long id, Float total, Set<Sale> sale, Date createdAt, Date updatedAt) {
-		super();
-		this.id = id;
-		this.total = total;
-		this.sale = sale;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
 
 	public Long getId() {
 		return id;
@@ -115,11 +109,19 @@ public class Orders {
 		this.updatedAt = updatedAt;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", total=" + total + ", sale=" + sale + ", createdAt=" + createdAt + ", updatedAt="
-				+ updatedAt + "]";
+
+
+	public Customer getCustomer() {
+		return customer;
 	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
 
 
 
